@@ -2,11 +2,23 @@
 .calendar {
   &__day {
     flex: 1;
-    height: 112px;
+    height: 88px;
     border-right: 1px solid #e3e3e3;
 
     &:last-child {
       border: none;
+    }
+
+    &--is-weekend {
+      background-color: #f9f9f9;
+    }
+
+    &--is-today {
+      background-color: red;
+    }
+
+    &--not-same-month {
+      color: #aaaaaa;
     }
   }
 }

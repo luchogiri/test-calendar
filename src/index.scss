@@ -23,12 +23,4 @@ display: -webkit-flex; display: flex; -webkit-flex-direction: column;  -ms-flex-
 .clear { clear: both; height: 0; display: block }
 .bgimg { background: center no-repeat; background-size: cover; }
 html, body { height: 100vh; color: #444; }
-body > main { height: 100vh; background-color: #ffffff; flex: 1 1 auto; overflow: hidden; }
-
-
-/* --- mobile first --- */
-.ctn { margin: 0; }
-@media (min-width: 576px) { .ctn { width: 540px; margin: 0 auto; }}
-@media (min-width: 768px) { .ctn { width: 720px; margin: 0 auto; }}
-@media (min-width: 992px) { .ctn { width: 960px; margin: 0 auto; }}
-@media (min-width: 1200px) { .ctn { width: 1140px; margin: 0 auto; }}
+body > main { height: 100vh; background-color: #ffffff; }

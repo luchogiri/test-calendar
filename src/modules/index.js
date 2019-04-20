@@ -1,15 +1,16 @@
 
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import Head from './head';
 import List from './list';
+import './index.scss';
 
 class App extends PureComponent {
   render() {
     return (
-      <Fragment>
+      <main className="calendar">
         <Head />
         <List />
-      </Fragment>
+      </main>
     );
   }
 }
