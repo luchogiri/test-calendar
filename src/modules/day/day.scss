@@ -1,7 +1,12 @@
 
 .calendar {
   &__day {
-    min-height: 100px;
-    border: 1px solid #444444;
+    flex: 1;
+    height: 112px;
+    border-right: 1px solid #e3e3e3;
+
+    &:last-child {
+      border: none;
+    }
   }
 }
