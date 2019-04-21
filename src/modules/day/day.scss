@@ -4,6 +4,11 @@
     flex: 1;
     height: 88px;
     border-right: 1px solid #e3e3e3;
+    transition: box-shadow 0.15s ease;
+
+    &:hover {
+      box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+    }
 
     &:last-child {
       border: none;
@@ -13,12 +18,31 @@
       background-color: #f9f9f9;
     }
 
-    &--is-today {
-      background-color: red;
-    }
-
     &--not-same-month {
       color: #aaaaaa;
+    }
+
+    header {
+
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding: 4px 4px 0;
+
+      h1, h2 {
+        padding: 4px;
+        font-size: 14px;
+      }
+    }
+
+    &--is-today {
+      header {
+        h1 {
+          background-color: #ff4444;
+          border-radius: 16px;
+          color: #ffffff;
+        }
+      }
     }
   }
 }

@@ -56,8 +56,12 @@ class Day extends PureComponent {
         {date &&
         <Fragment>
 
-          {date.date()}
-          {isFirstDay && date.format('MMM')}
+          <header>
+            <h1>{date.date()}</h1>
+
+            {isFirstDay &&
+            <h2>{date.format('MMM')}</h2>}
+          </header>
 
         </Fragment>}
       </article>
