@@ -10,7 +10,7 @@ class Week extends PureComponent {
   render() {
 
     const days = 7;
-    const {month, week, now} = this.props;
+    const {week} = this.props;
 
     return (
       <section className="calendar__week">
@@ -19,8 +19,6 @@ class Week extends PureComponent {
             key={i}
             day={i}
             week={week}
-            month={month}
-            now={now}
           />
         )}
       </section>

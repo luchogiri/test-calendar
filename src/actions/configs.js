@@ -2,15 +2,18 @@
 
 export const Actions = {
 
-  UPDATE: 'configs.update'
+  MONTH_RESET: 'configs.month.reset',
+  MONTH_ADD: 'configs.month.add',
+  MONTH_SUBTRACT: 'configs.month.subtract',
 };
 
 const Configs = {
 
-  Loading: () => ({ type: Actions.LOADING }),
+  ResetMonth: () => ({ type: Actions.MONTH_RESET }),
 
-  Update: data => ({ type: Actions.UPDATE, data }),
+  AddMonth: () => ({ type: Actions.MONTH_ADD }),
 
+  SubtractMonth: () => ({ type: Actions.MONTH_SUBTRACT })
 };
 
 export default Configs;

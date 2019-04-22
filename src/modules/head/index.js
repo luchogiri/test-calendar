@@ -1,37 +1,47 @@
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import moment from 'moment';
+import {connect} from 'react-redux';
+import Configs from '../../actions/configs';
 
 import './head.scss';
 
 
-class Head extends PureComponent {
+const Head = ({ month, reset, next, previous }) => (
 
-  render() {
-    return (
-      <header className="calendar__head">
+  <header className="calendar__head">
 
-        <section className="calendar__head__title">
-          <h1>
-            <strong>April</strong> 2019
-          </h1>
+    <section className="calendar__head__title">
+      <h1>
+        <strong>
+          {month.format('MMMM')}
+        </strong> {month.format('YYYY')}
+      </h1>
 
-          <nav>
-            <div>&lt;</div>
-            <div>Today</div>
-            <div>&gt;</div>
-          </nav>
-        </section>
+      <nav>
+        <div onClick={previous}>&lt;</div>
+        <div onClick={reset}>Today</div>
+        <div onClick={next}>&gt;</div>
+      </nav>
+    </section>
 
-        <section className="calendar__head__days">
-          {moment.weekdaysShort().map(i =>
-            <h3 key={i}>{i}</h3>
-          )}
-        </section>
+    <section className="calendar__head__days">
+      {moment.weekdaysShort().map(i =>
+        <h3 key={i}>{i}</h3>
+      )}
+    </section>
 
-      </header>
-    );
-  }
-}
+  </header>
+);
 
-export default Head;
+export default connect(
+
+  s => s.configs,
+
+  dispatch => ({
+    reset: () => dispatch( Configs.ResetMonth() ),
+    next: () => dispatch( Configs.AddMonth() ),
+    previous: () => dispatch( Configs.SubtractMonth() )
+  })
+
+)(Head);

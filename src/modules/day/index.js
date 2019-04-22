@@ -1,44 +1,26 @@
 
 import React, { PureComponent, Fragment } from 'react';
 import moment from 'moment';
+import {connect} from 'react-redux';
 
 import './day.scss';
 
 
 class Day extends PureComponent {
 
-  state = {
-    date: undefined,
-    isToday: false,
-    isFirstDay: false,
-    isWeekend: false,
-    isSameMonth: false
-  };
-
-
-  componentDidMount() {
-
-    const {now} = this.props;
-    const date = this.getDate();
-
-    this.setState({
-      date,
-      isToday: date.isSame( now, 'day'),
-      isFirstDay: date.date() === 1,
-      isWeekend: date.day() === 0 || date.day() === 6,
-      isSameMonth: date.isSame( now, 'month'),
-    });
-  }
-
   getDate = () => {
 
-    const {month, week, day} = this.props;
-    return moment(month).add( week*7 + day - month.day(), 'days' );
+    const {configs, week, day} = this.props;
+    return moment(configs.month).add( week*7 + day - configs.month.day(), 'days' );
   };
 
-  getClass = () => {
+  getClass = date => {
 
-    const {isToday, isWeekend, isSameMonth} = this.state;
+    const {configs} = this.props;
+    const isToday = date.isSame( configs.now, 'day');
+    const isWeekend = date.day() === 0 || date.day() === 6;
+    const isSameMonth = date.isSame( configs.month, 'month');
+
     const classes = ['calendar__day'];
     isToday && classes.push('calendar__day--is-today');
     isWeekend && classes.push('calendar__day--is-weekend');
@@ -48,8 +30,9 @@ class Day extends PureComponent {
 
   render() {
 
-    const { date, isFirstDay } = this.state;
-    const classes = this.getClass();
+    const date = this.getDate();
+    const isFirstDay = date.date() === 1;
+    const classes = this.getClass(date);
 
     return (
       <article className={classes.join(' ')}>
@@ -69,4 +52,4 @@ class Day extends PureComponent {
   }
 }
 
-export default Day;
+export default connect(s => s)(Day);
