@@ -2,14 +2,18 @@
 
 export const Actions = {
 
-  UPDATE: 'events.update'
+  CREATE: 'events.create',
+  UPDATE: 'events.update',
+  DELETE: 'events.delete',
 };
 
 const Events = {
 
-  Loading: () => ({ type: Actions.LOADING }),
+  Create: data => ({ type: Actions.CREATE, data }),
 
   Update: data => ({ type: Actions.UPDATE, data }),
+
+  Delete: data => ({ type: Actions.DELETE, data }),
 
 };
 

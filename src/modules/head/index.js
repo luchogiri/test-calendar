@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {PureComponent} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
 import Configs from '../../actions/configs';
@@ -15,31 +15,38 @@ const dispatchProps = dispatch => ({
 });
 
 
-const Head = ({ month, reset, next, previous }) => (
+class Head extends PureComponent {
 
-  <header className="calendar__head">
+  render () {
 
-    <section className="calendar__head__title">
-      <h1>
-        <strong>
-          {month.format('MMMM')}
-        </strong> {month.format('YYYY')}
-      </h1>
+    const { configs, reset, next, previous } = this.props;
 
-      <nav>
-        <div onClick={previous}>&lt;</div>
-        <div onClick={reset}>Today</div>
-        <div onClick={next}>&gt;</div>
-      </nav>
-    </section>
+    return (
+      <header className="calendar__head">
 
-    <section className="calendar__head__days">
-      {moment.weekdaysShort().map(i =>
-        <h3 key={i}>{i}</h3>
-      )}
-    </section>
+        <section className="calendar__head__title">
+          <h1>
+            <strong>
+              {configs.month.format('MMMM')}
+            </strong> {configs.month.format('YYYY')}
+          </h1>
 
-  </header>
-);
+          <nav>
+            <div onClick={previous}>&lt;</div>
+            <div onClick={reset}>Today</div>
+            <div onClick={next}>&gt;</div>
+          </nav>
+        </section>
 
-export default connect(s => s.configs, dispatchProps)(Head);
+        <section className="calendar__head__days">
+          {moment.weekdaysShort().map(i =>
+            <h3 key={i}>{i}</h3>
+          )}
+        </section>
+
+      </header>
+    );
+  }
+}
+
+export default connect(s => s, dispatchProps)(Head);

@@ -17,15 +17,18 @@ class Events extends PureComponent {
 
   render() {
 
-    const {createEvent, updateEvent, date} = this.props;
-    const events = 5;
+    const {date, items = [], createEvent, updateEvent} = this.props;
+    const data = items.filter( i => date.isSame(i.date, 'day'));
 
     return (
       <section className="calendar__events">
-        {[...(new Array( events ))].map((a,i) =>
-          <div key={i} onClick={updateEvent(date)}>
-            <span>&#9679;</span>&nbsp;
-            new event {i}
+        {data.map(i =>
+          <div
+            key={i.id}
+            className={`col-${i.color.substr(1).toUpperCase()}`}
+            onClick={updateEvent(date, i.id)}>
+            <span style={{color: i.color}}>&#9679;</span>&nbsp;
+            {i.name}
           </div>
         )}
 
@@ -38,4 +41,4 @@ class Events extends PureComponent {
   }
 }
 
-export default connect(s => s, dispatchProps)(Events);
+export default connect(s => s.events, dispatchProps)(Events);

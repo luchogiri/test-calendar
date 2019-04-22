@@ -30,10 +30,10 @@ class Event extends PureComponent {
 
   componentDidMount() {
 
-    const {item, configs, events} = this.props;
-    const event = events.items.find( i => i.id === item);
+    const {configs, events} = this.props;
+    const event = events.items.find( i => i.id === configs.item );
 
-    if (!item || !event || !event.id)
+    if (!configs.item || !event || !event.id)
       return this.setState({
         day: moment(configs.date).format('YYYY-MM-DD')
       });
@@ -41,6 +41,7 @@ class Event extends PureComponent {
     this.setState({
       id: event.id,
       name: event.name,
+      color: event.color,
       day: moment(event.date || configs.date).format('YYYY-MM-DD'),
       hour: moment(event.date || configs.date).format('HH')
     });
@@ -53,23 +54,34 @@ class Event extends PureComponent {
 
   onSubmit = () => {
 
-    const data = this.state;
-    if (!data.id) {
-      // data.id = +new Date();
-      // create new event
-    }
-    else {
-      // update event by id
-    }
+    const { id, name, color, day, hour} = this.state;
 
+    if (!name || !day)
+      return window.alert('Please check "name" and "date" fields.');
+
+    const date = moment(`${day}T${hour}:00:00.000`);
+
+    if (!id)
+      this.props.dispatch(Events.Create({ id: +new Date(), name, color, date }));
+
+    else
+      this.props.dispatch(Events.Update({ id, name, color, date }));
+
+    this.props.dispatch( Configs.HideModal() );
   };
 
   onDelete = () => {
 
     const {id, name} = this.state;
-    if (window.confirm('Eliminar evento', `¿Seguro desea eliminar el evento ${name}?`))
-      console.log( id );
-    // delete
+    const {dispatch} = this.props;
+
+    if (!id && window.confirm(`¿Seguro desea cancelar?`))
+      return dispatch( Configs.HideModal() );
+
+    if (window.confirm(`¿Seguro desea eliminar el evento ${name}?`)) {
+      dispatch( Events.Delete(id) );
+      dispatch( Configs.HideModal() );
+    }
   };
 
   render() {

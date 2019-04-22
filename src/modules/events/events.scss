@@ -16,16 +16,29 @@
       margin-bottom: 2px;
       transition: background-color 0.2s ease, color 0.2s ease;
 
+      span {
+        transition: color 0.2s ease;
+      }
+
+      &.col-FF0000:hover { background-color: #FF0000 }
+      &.col-FF00FF:hover { background-color: #FF00FF }
+      &.col-3333FF:hover { background-color: #3333FF }
+      &.col-339933:hover { background-color: #339933 }
+      &.col-FF9900:hover { background-color: #FF9900 }
+
       &:hover {
         background-color: #aaaaaa;
         color: #ffffff;
+        span {
+          color: #ffffff !important;
+        }
       }
 
       &:last-child {
 
         padding: 1px 2px;
         background-color: #999999;
-        color: #fff;
+        color: #ffffff;
         opacity: 0;
         text-align: center;
         transition: opacity 0.2s ease;
