@@ -2,8 +2,10 @@
 .calendar {
   &__week {
 
+    flex-shrink: 0;
     flex-direction: row;
     border-bottom: 1px solid #e3e3e3;
+
 
     &:last-child {
       border: none;

@@ -7,6 +7,14 @@ import Configs from '../../actions/configs';
 import './head.scss';
 
 
+const dispatchProps = dispatch => ({
+
+  reset: () => dispatch( Configs.ResetMonth() ),
+  next: () => dispatch( Configs.AddMonth() ),
+  previous: () => dispatch( Configs.SubtractMonth() )
+});
+
+
 const Head = ({ month, reset, next, previous }) => (
 
   <header className="calendar__head">
@@ -34,14 +42,4 @@ const Head = ({ month, reset, next, previous }) => (
   </header>
 );
 
-export default connect(
-
-  s => s.configs,
-
-  dispatch => ({
-    reset: () => dispatch( Configs.ResetMonth() ),
-    next: () => dispatch( Configs.AddMonth() ),
-    previous: () => dispatch( Configs.SubtractMonth() )
-  })
-
-)(Head);
+export default connect(s => s.configs, dispatchProps)(Head);

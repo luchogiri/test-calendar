@@ -2,7 +2,7 @@
 .calendar {
   &__day {
     flex: 1;
-    height: 88px;
+    height: 98px;
     border-right: 1px solid #e3e3e3;
     transition: box-shadow 0.15s ease;
 
@@ -25,6 +25,8 @@
     header {
 
       display: flex;
+      flex: 0 0 auto;
+      height: 32px;
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 4px 4px 0;
@@ -33,13 +35,18 @@
         padding: 4px;
         font-size: 14px;
       }
+
+      h1 {
+        width: 24px;
+        height: 24px;
+      }
     }
 
     &--is-today {
       header {
         h1 {
           background-color: #ff4444;
-          border-radius: 16px;
+          border-radius: 12px;
           color: #ffffff;
         }
       }

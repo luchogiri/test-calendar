@@ -2,6 +2,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
+import Events from '../events';
 
 import './day.scss';
 
@@ -45,6 +46,8 @@ class Day extends PureComponent {
             {isFirstDay &&
             <h2>{date.format('MMM')}</h2>}
           </header>
+
+          <Events date={date} />
 
         </Fragment>}
       </article>

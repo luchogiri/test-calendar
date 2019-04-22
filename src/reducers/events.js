@@ -1,7 +1,10 @@
 
 import {Actions} from '../actions/events';
 
-const InitialState = [];
+const InitialState = {
+
+  items: []
+};
 
 
 const Events = (state = { ...InitialState }, action) => {
